@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
 class UsernameScreen extends StatefulWidget {
   const UsernameScreen({super.key});
@@ -12,6 +13,7 @@ class UsernameScreen extends StatefulWidget {
 class _UsernameScreenState extends State<UsernameScreen> {
   final TextEditingController _usernameController = TextEditingController();
   String _username = "";
+
   @override
   void initState() {
     super.initState();
@@ -22,6 +24,12 @@ class _UsernameScreenState extends State<UsernameScreen> {
         });
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
   }
 
   @override
@@ -73,29 +81,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
               cursorColor: Theme.of(context).primaryColor,
             ),
             Gaps.v16,
-            FractionallySizedBox(
-              widthFactor: 1,
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                padding: const EdgeInsets.symmetric(vertical: Sizes.size14),
-                decoration: BoxDecoration(
-                  color: _username.isEmpty
-                      ? Colors.grey.shade300
-                      : Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(
-                    Sizes.size10,
-                  ),
-                ),
-                child: const Text(
-                  "Next",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            )
+            FormButton(disabled: _username.isEmpty)
           ],
         ),
       ),
