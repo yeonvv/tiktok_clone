@@ -72,6 +72,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
             Gaps.v16,
             TextField(
               controller: _usernameController,
+              autocorrect: false,
               decoration: InputDecoration(
                 hintText: "Username",
                 hintStyle: const TextStyle(
